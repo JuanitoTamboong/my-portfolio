@@ -68,3 +68,13 @@ window.addEventListener('scroll', function () {
     button.classList.remove('visible');
   }
 });
+
+function downloadCV() {
+  const link = document.createElement('a');
+  link.href = './resume-file/Resume-file.pdf';
+  link.download = 'Sonia_Faa_Fajutagana_CV.pdf';
+  link.target = '_blank';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
