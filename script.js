@@ -1,34 +1,59 @@
-// Hamburger menu toggle
-// Expected markup:
-// - Button calls toggleMenu()
-// - .hamburger-icon receives .open class
-// - .menu-links receives .open class
-
+// ========== HAMBURGER MENU TOGGLE ==========
 function toggleMenu() {
-  const hamburgerIcon = document.querySelector('.hamburger-icon');
-  const menuLinks = document.querySelector('.menu-links');
+  const btn = document.querySelector('.hamburger-btn');
+  const menu = document.querySelector('.menu-links');
+  if (!btn || !menu) return;
 
-  if (!hamburgerIcon || !menuLinks) return;
-
-  hamburgerIcon.classList.toggle('open');
-  menuLinks.classList.toggle('open');
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
 }
 
-// Optional: close menu when clicking a link
-function closeMenuOnLinkClick() {
-  const menuLinks = document.querySelector('.menu-links');
-  const hamburgerIcon = document.querySelector('.hamburger-icon');
-  if (!menuLinks || !hamburgerIcon) return;
+// ========== CLOSE MENU (when link clicked) ==========
+function closeMenu() {
+  const btn = document.querySelector('.hamburger-btn');
+  const menu = document.querySelector('.menu-links');
+  if (!btn || !menu) return;
 
-  menuLinks.addEventListener('click', (e) => {
-    const a = e.target.closest('a');
-    if (!a) return;
-
-    hamburgerIcon.classList.remove('open');
-    menuLinks.classList.remove('open');
-  });
+  btn.classList.remove('open');
+  menu.classList.remove('open');
 }
 
-document.addEventListener('DOMContentLoaded', closeMenuOnLinkClick);
+// ========== AUTO-CLOSE ON OUTSIDE CLICK ==========
+document.addEventListener('click', function (e) {
+  const menu = document.querySelector('.menu-links');
+  const btn = document.querySelector('.hamburger-btn');
+  const hamburger = document.querySelector('.hamburger-menu');
+  if (!menu || !btn || !hamburger) return;
 
+  if (!hamburger.contains(e.target)) {
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+  }
+});
 
+// ========== CLOSE ON ESC KEY ==========
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') {
+    const btn = document.querySelector('.hamburger-btn');
+    const menu = document.querySelector('.menu-links');
+    if (!btn || !menu) return;
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+  }
+});
+
+// ========== CLOSE ON RESIZE TO DESKTOP ==========
+let resizeTimer;
+window.addEventListener('resize', function () {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    if (window.innerWidth > 768) {
+      const btn = document.querySelector('.hamburger-btn');
+      const menu = document.querySelector('.menu-links');
+      if (btn && menu) {
+        btn.classList.remove('open');
+        menu.classList.remove('open');
+      }
+    }
+  }, 150);
+});
