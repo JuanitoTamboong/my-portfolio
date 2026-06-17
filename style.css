@@ -230,6 +230,19 @@ section {
   font-weight: 500;
   color: #444;
   margin-bottom: 1.2rem;
+  min-height: 2.5rem;
+}
+
+#typing-text {
+  border-right: 3px solid #1e1e1e;
+  padding-right: 5px;
+  display: inline-block;
+  animation: blink-caret 0.75s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #1e1e1e; }
 }
 
 .btn-container {

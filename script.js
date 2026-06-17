@@ -78,3 +78,43 @@ function downloadCV() {
   link.click();
   document.body.removeChild(link);
 }
+
+const typingText = document.getElementById('typing-text');
+const phrases = [
+  'Website Developer',
+ 
+];
+
+let phraseIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typingSpeed = 100;
+
+function typeEffect() {
+  const currentPhrase = phrases[phraseIndex];
+  
+  if (isDeleting) {
+    typingText.textContent = currentPhrase.substring(0, charIndex - 1);
+    charIndex--;
+    typingSpeed = 50;
+  } else {
+    typingText.textContent = currentPhrase.substring(0, charIndex + 1);
+    charIndex++;
+    typingSpeed = 100;
+  }
+
+  if (!isDeleting && charIndex === currentPhrase.length) {
+    isDeleting = true;
+    typingSpeed = 1500;
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    phraseIndex = (phraseIndex + 1) % phrases.length;
+    typingSpeed = 300;
+  }
+
+  setTimeout(typeEffect, typingSpeed);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(typeEffect, 500);
+});
