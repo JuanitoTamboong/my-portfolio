@@ -319,7 +319,6 @@ section {
   line-height: 1;;
   transition: transform 0.2s ease;
   color: #1e1e1e;
-  background-color: rgba(32, 23, 23, 0.119);
   border-radius: 50%;
 }
 
