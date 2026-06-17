@@ -1,4 +1,3 @@
-// ========== HAMBURGER MENU TOGGLE ==========
 function toggleMenu() {
   const btn = document.querySelector('.hamburger-btn');
   const menu = document.querySelector('.menu-links');
@@ -8,7 +7,6 @@ function toggleMenu() {
   menu.classList.toggle('open');
 }
 
-// ========== CLOSE MENU (when link clicked) ==========
 function closeMenu() {
   const btn = document.querySelector('.hamburger-btn');
   const menu = document.querySelector('.menu-links');
@@ -18,7 +16,6 @@ function closeMenu() {
   menu.classList.remove('open');
 }
 
-// ========== AUTO-CLOSE ON OUTSIDE CLICK ==========
 document.addEventListener('click', function (e) {
   const menu = document.querySelector('.menu-links');
   const btn = document.querySelector('.hamburger-btn');
@@ -31,7 +28,6 @@ document.addEventListener('click', function (e) {
   }
 });
 
-// ========== CLOSE ON ESC KEY ==========
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape') {
     const btn = document.querySelector('.hamburger-btn');
@@ -42,7 +38,6 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-// ========== CLOSE ON RESIZE TO DESKTOP ==========
 let resizeTimer;
 window.addEventListener('resize', function () {
   clearTimeout(resizeTimer);
@@ -56,4 +51,20 @@ window.addEventListener('resize', function () {
       }
     }
   }, 150);
+});
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
+window.addEventListener('scroll', function () {
+  const button = document.getElementById('back-to-top');
+  if (window.scrollY > 300) {
+    button.classList.add('visible');
+  } else {
+    button.classList.remove('visible');
+  }
 });
